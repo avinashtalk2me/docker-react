@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run avidocker001/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "avidocker-react-app"
+  env: "Avidockerreactapp-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-261643621708"
+  bucket_path: "avidocker-react-app"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
